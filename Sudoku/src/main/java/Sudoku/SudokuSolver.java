@@ -1,3 +1,5 @@
+package Sudoku;
+
 public class SudokuSolver {
 
     private static Integer[][] sudokuBoard = {
@@ -12,16 +14,7 @@ public class SudokuSolver {
             {0, 0, 0, 0, 8, 0, 0, 7, 9}
     };
 
-    public static void main(String[] args) {
-        if (solveSudoku()) {
-            System.out.println("Sudoku solved successfully:");
-            printBoard();
-        } else {
-            System.out.println("No solution exists for the given Sudoku puzzle.");
-        }
-    }
-
-    private static Boolean solveSudoku() {
+    public static Boolean solveSudoku() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 if (sudokuBoard[row][col] == 0) {
@@ -43,7 +36,7 @@ public class SudokuSolver {
         return true;
     }
 
-    private static Boolean isValid(Integer row, Integer col, Integer number) {
+    public static Boolean isValid(Integer row, Integer col, Integer number) {
         for (int index = 0; index < 9; index++) {
             if (sudokuBoard[row][index].equals(number) || sudokuBoard[index][col].equals(number)) {
                 return false;
@@ -63,7 +56,7 @@ public class SudokuSolver {
         return true;
     }
 
-    private static void printBoard() {
+    public static void printBoard() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 System.out.print(sudokuBoard[row][col] + " ");
