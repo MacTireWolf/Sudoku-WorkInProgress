@@ -26,9 +26,9 @@ public class SudokuSolver {
                     while (true) {
                         System.out.printf("Enter value for cell (%d, %d): ", row + 1, col + 1);
                         input = scanner.nextInt();
-                        if (input < 0 || input > 9) {
-                            System.out.println("Invalid input. Please enter a number between 0 and 9.");
-                        } else if (input != 0 && !isValid(row, col, input)) {
+                        if (input < 1 || input > 9) {
+                            System.out.println("Invalid input. Please enter a number between 1 and 9.");
+                        } else if (input != 1 && !isValid(row, col, input)) {
                             System.out.println("Invalid move. The number " + input + " cannot be placed in cell (" + (row + 1) + ", " + (col + 1) + "). Please try again.");
                         } else {
                             sudokuBoard[row][col] = input;
