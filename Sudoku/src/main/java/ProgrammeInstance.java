@@ -1,17 +1,21 @@
 import Sudoku.SudokuSolver;
-
-import static Sudoku.SudokuSolver.printBoard;
-import static Sudoku.SudokuSolver.solveSudoku;
+import java.util.Scanner;
 
 public class ProgrammeInstance {
-    SudokuSolver sudokuSolver = new SudokuSolver();
 
     public static void main(String[] args) {
-        if (solveSudoku()) {
+        Scanner scanner = new Scanner(System.in);
+        SudokuSolver.printBoard();
+        SudokuSolver.getUserInput(scanner);
+        System.out.println("Board after user edits:");
+        SudokuSolver.printBoard();
+
+        if (SudokuSolver.solveSudoku()) {
             System.out.println("Sudoku solved successfully:");
-            printBoard();
+            SudokuSolver.printBoard();
         } else {
-            System.out.println("No solution exists for the given Sudoku puzzle.");
+            System.out.println("Sudoku solved unsuccessfully.");
         }
+        scanner.close();
     }
 }
