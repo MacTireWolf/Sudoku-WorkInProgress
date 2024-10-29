@@ -1,6 +1,6 @@
 package Sudoku;
-
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class InterfaceGUI extends JPanel {
@@ -19,12 +19,13 @@ public class InterfaceGUI extends JPanel {
             for (int col = 0; col < size; col++) {
                 JTextField cell = new JTextField();
                 cell.setHorizontalAlignment(JTextField.CENTER);
+                cell.setBorder(new LineBorder(Color.BLACK, 1));
 
                 Integer cellValue = SudokuSolver.sudokuBoard[row][col];
                 if (cellValue != 0) {
                     cell.setText(cellValue.toString());
                     cell.setEditable(false);
-                    cell.setBackground(Color.LIGHT_GRAY);
+                    cell.setBackground(Color.WHITE);
                 } else {
                     cell.setText("");
                     cell.setEditable(true);
@@ -63,7 +64,7 @@ public class InterfaceGUI extends JPanel {
                 if(value != 0){
                     cells[row][col].setText(value.toString());
                     cells[row][col].setEditable(false);
-                    cells[row][col].setBackground(Color.LIGHT_GRAY);
+                    cells[row][col].setBackground(Color.WHITE);
                 } else{
                     cells[row][col].setText("");
                     cells[row][col].setEditable(true);

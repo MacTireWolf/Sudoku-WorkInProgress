@@ -1,18 +1,18 @@
-import Sudoku.SudokuSolver;
-
-import java.util.Scanner;
+import Sudoku.InterfaceGUI;
+import javax.swing.*;
+import java.awt.*;
 
 public class ProgrammeInstance {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        SudokuSolver.printBoard();
-        SudokuSolver.getUserInput(scanner);
-
-        if (SudokuSolver.solveSudoku()) {
-            System.out.println("Sudoku solved successfully:");
-            SudokuSolver.printBoard();
-        }
-        scanner.close();
+        JFrame frame = new JFrame("Sudoku Game");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        InterfaceGUI sudokuPanel = new InterfaceGUI();
+        frame.setLayout(new BorderLayout());
+        frame.add(sudokuPanel, BorderLayout.CENTER);
+        frame.pack();
+        frame.setSize(600, 600);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }
