@@ -5,15 +5,15 @@ import java.util.Scanner;
 public class SudokuSolver {
 
     private static Integer[][] sudokuBoard = {
-            {5, 3, 0, 0, 7, 0, 0, 0, 0},
-            {6, 0, 0, 1, 9, 5, 0, 0, 0},
-            {0, 9, 8, 0, 0, 0, 0, 6, 0},
-            {8, 0, 0, 0, 6, 0, 0, 0, 3},
-            {4, 0, 0, 8, 0, 3, 0, 0, 1},
-            {7, 0, 0, 0, 2, 0, 0, 0, 6},
-            {0, 6, 0, 0, 0, 0, 2, 8, 0},
-            {0, 0, 0, 4, 1, 9, 0, 0, 5},
-            {0, 0, 0, 0, 8, 0, 0, 7, 9}
+            {5, 3, 4, 6, 7, 0, 9, 1, 2},
+            {6, 0, 2, 1, 9, 5, 0, 4, 8},
+            {1, 9, 8, 0, 4, 2, 5, 6, 7},
+            {8, 5, 9, 7, 6, 1, 0, 2, 3},
+            {4, 2, 6, 8, 5, 3, 7, 9, 1},
+            {7, 1, 3, 9, 2, 4, 8, 5, 6},
+            {9, 6, 1, 5, 3, 7, 2, 8, 4},
+            {2, 8, 7, 4, 1, 9, 6, 3, 5},
+            {3, 4, 5, 2, 8, 6, 1, 7, 9}
     };
 
     public static void getUserInput(Scanner scanner) {
@@ -23,11 +23,13 @@ public class SudokuSolver {
             for (int col = 0; col < 9; col++) {
                 if (sudokuBoard[row][col] == 0) {
                     Integer input = -1;
-                    while (input < 0 || input > 9) {
+                    while (true) {
                         System.out.printf("Enter value for cell (%d, %d): ", row + 1, col + 1);
                         input = scanner.nextInt();
                         if (input < 0 || input > 9) {
                             System.out.println("Invalid input. Please enter a number between 0 and 9.");
+                        } else if (input != 0 && !isValid(row, col, input)) {
+                            System.out.println("Invalid move. The number " + input + " cannot be placed in cell (" + (row + 1) + ", " + (col + 1) + "). Please try again.");
                         } else {
                             sudokuBoard[row][col] = input;
                             break;
@@ -81,7 +83,6 @@ public class SudokuSolver {
     }
 
     public static void printBoard() {
-        System.out.println("Current Sudoku Board:");
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 System.out.print(sudokuBoard[row][col] + " ");
