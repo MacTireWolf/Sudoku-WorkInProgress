@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SudokuSolver {
 
-    private static Integer[][] sudokuBoard = {
+    public static Integer[][] sudokuBoard = {
             {5, 3, 4, 6, 7, 0, 9, 1, 2},
             {6, 0, 2, 1, 9, 5, 0, 4, 8},
             {1, 9, 8, 0, 4, 2, 5, 6, 7},
