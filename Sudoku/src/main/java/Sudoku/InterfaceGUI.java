@@ -1,20 +1,37 @@
 package Sudoku;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InterfaceGUI extends JPanel {
     private static final Integer size = 9;
-    private static final Integer cellSize = 50;
-    private static final Integer boardSize = cellSize * size;
     private JTextField[][] cells = new JTextField[size][size];
 
     public InterfaceGUI() {
-        setLayout(new GridLayout(size, size));
+        setLayout(new BorderLayout());
         initializeBoard();
+
+        JButton solveButton = new JButton("Solve");
+        solveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkUserInput();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(solveButton);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
+
     public void initializeBoard() {
+        JPanel boardPanel = new JPanel();
+        boardPanel.setLayout(new GridLayout(size, size));
+
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 JTextField cell = new JTextField();
@@ -34,43 +51,25 @@ public class InterfaceGUI extends JPanel {
 
                 cell.setDocument(new JTextFieldLimit(1));
                 cells[row][col] = cell;
-                add(cell);
+                boardPanel.add(cell);
             }
         }
+        add(boardPanel, BorderLayout.CENTER);
     }
 
-    public Boolean updateBoardFromInput() {
+    public void updateInputFromBoard() {
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
-                String text = cells[row][col].getText();
-                if (text.isEmpty()) {
-                    SudokuSolver.sudokuBoard[row][col] = 0;
-                } else {
-                    Integer value = Integer.parseInt(text);
-                    if(value < 1 || value > 9){
-                        return false;
-                    }
-                    SudokuSolver.sudokuBoard[row][col] = value;
-                }
-            }
-        }
-        return true;
-    }
-
-    public void updateInputFromBoard(){
-        for (int row = 0; row < size; row++){
-            for (int col = 0; col < size; col++){
                 Integer value = SudokuSolver.sudokuBoard[row][col];
-                if(value != 0){
+                if (value != 0) {
                     cells[row][col].setText(value.toString());
                     cells[row][col].setEditable(false);
                     cells[row][col].setBackground(Color.WHITE);
-                } else{
+                } else {
                     cells[row][col].setText("");
                     cells[row][col].setEditable(true);
                 }
             }
         }
     }
-
 }

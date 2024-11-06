@@ -1,4 +1,6 @@
 import Sudoku.InterfaceGUI;
+import Sudoku.SudokuSolver;
+
 import javax.swing.*;
 import java.awt.*;
 

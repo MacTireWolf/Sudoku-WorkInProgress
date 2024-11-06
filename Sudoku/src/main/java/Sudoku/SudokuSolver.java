@@ -1,5 +1,4 @@
 package Sudoku;
-import java.util.Scanner;
 
 public class SudokuSolver {
 
@@ -15,7 +14,16 @@ public class SudokuSolver {
             {3, 4, 5, 2, 8, 6, 1, 7, 9}
     };
 
-    public static Boolean solveSudoku() {
+    public static Integer[][] solvedSudoku = new Integer[9][9];
+
+    public static void copySolvedSudokuBoard() {
+        solve();
+        for (int index = 0; index < 9; index++) {
+            System.arraycopy(sudokuBoard[index], 0, solvedSudoku[index], 0, 9);
+        }
+    }
+
+    public static Boolean solve() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 if (sudokuBoard[row][col] == 0) {
@@ -23,7 +31,7 @@ public class SudokuSolver {
                         if (isValid(row, col, number)) {
                             sudokuBoard[row][col] = number;
 
-                            if (solveSudoku()) {
+                            if (solve()) {
                                 return true;
                             }
 
