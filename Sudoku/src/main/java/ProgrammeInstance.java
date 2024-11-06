@@ -1,5 +1,4 @@
 import Sudoku.InterfaceGUI;
-import Sudoku.SudokuSolver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +15,6 @@ public class ProgrammeInstance {
         frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        sudokuPanel.updateInputFromBoard();
+        sudokuPanel.fillBoard();
     }
 }

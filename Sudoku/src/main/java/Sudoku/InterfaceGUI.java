@@ -81,7 +81,7 @@ public class InterfaceGUI extends JPanel {
         }
     }
 
-    public void updateInputFromBoard() {
+    public void fillBoard() {
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 Integer value = SudokuSolver.sudokuBoard[row][col];
