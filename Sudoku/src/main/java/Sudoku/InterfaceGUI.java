@@ -57,6 +57,30 @@ public class InterfaceGUI extends JPanel {
         add(boardPanel, BorderLayout.CENTER);
     }
 
+    public void checkUserInput() {
+        SudokuSolver.copySolvedSudokuBoard();
+        Integer[][] solvedCopy = SudokuSolver.solvedSudoku;
+
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                String text = cells[row][col].getText();
+                Integer userInput = text.isEmpty() ? 0 : Integer.parseInt(text);
+
+                if (!cells[row][col].isEditable()) {
+                    continue;
+                }
+
+                if (userInput != 0) {
+                    if (solvedCopy[row][col].equals(userInput)) {
+                        cells[row][col].setBackground(Color.green);
+                    } else {
+                        cells[row][col].setBackground(Color.red);
+                    }
+                }
+            }
+        }
+    }
+
     public void updateInputFromBoard() {
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
